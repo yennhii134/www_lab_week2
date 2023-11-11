@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week2_20060341_tranthiyennhi;
+package vn.edu.iuh.fit;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
