@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.repositories;
+package vn.edu.iuh.fit.db;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -7,9 +7,10 @@ import jakarta.persistence.Persistence;
 
 public class Connection {
     private static Connection instance;
-    private EntityManagerFactory emf;
+    private EntityManager em;
     private Connection(){
-        emf = Persistence.createEntityManagerFactory("lab_week_2");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lab_week_2");
+        em = emf.createEntityManager();
     }
     public static Connection getInstance(){
         if(instance == null){
@@ -17,12 +18,12 @@ public class Connection {
         }
         return instance;
     }
-    public EntityManagerFactory getEmf(){
-        return  emf;
+    public EntityManager getEntiyManager(){
+        return  em;
     }
+
     public static void main(String[] args) {
-        EntityManagerFactory emf = Connection.getInstance().getEmf();
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = Connection.getInstance().getEntiyManager();
         EntityTransaction tr = em.getTransaction();
         tr.begin();
         try {

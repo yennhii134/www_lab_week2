@@ -8,7 +8,6 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="/week02?action=customer">Customer</a>
 <a href="/week02?action=employee">Employee</a>
 
 <br>

@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 
 @Converter(autoApply = true)
 public class EmployeeStatusConverter implements AttributeConverter<EmployeeStatus, Integer> {
-
-
     @Override
     public Integer convertToDatabaseColumn(EmployeeStatus attribute) {
         if(attribute == null){
@@ -17,10 +15,9 @@ public class EmployeeStatusConverter implements AttributeConverter<EmployeeStatu
         }
         return attribute.getValue();
     }
-
     @Override
     public EmployeeStatus convertToEntityAttribute(Integer dbData) {
-        if(dbData == null){
+        if (dbData == null) {
             return null;
         }
         return Stream.of(EmployeeStatus.values())

@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product_image")
+@NamedQueries(
+        @NamedQuery(name = "ProductImage.getAll", query = "select pi from ProductImage pi")
+)
 public class ProductImage {
     @Id
     @Column(name = "image_id", length = 20, nullable = false)
@@ -14,7 +17,7 @@ public class ProductImage {
     @Column(name = "path", length = 250, nullable = false)
     private String path;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "product_id")
     private Product product;
 
     public ProductImage(){

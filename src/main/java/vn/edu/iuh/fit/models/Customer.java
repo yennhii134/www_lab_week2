@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name  ="customer")
 @NamedQueries(
-        @NamedQuery(name = "Customer.findAll", query = "select c from Customer c"))
+        @NamedQuery(name = "Customer.getAll", query = "select c from Customer c"))
 public class Customer {
     @Id
     @Column(name = "cust_id", nullable = false, length = 20)
@@ -21,7 +21,7 @@ public class Customer {
     private String email;
     @Column(name = "phone",length = 15, nullable = false)
     private String phone;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Order> order;
 
     public Customer(){

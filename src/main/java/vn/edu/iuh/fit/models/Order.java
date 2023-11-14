@@ -7,7 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
+@NamedQueries(
+        @NamedQuery(name = "Order.getAll", query = "select o from Order o")
+)
 public class Order {
     @Id
     @Column(name = "order_id", length = 20, nullable = false)
@@ -17,12 +20,12 @@ public class Order {
     @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDateTime orderDate;
     @ManyToOne
-    @JoinColumn(name = "cust_id", nullable = false)
+    @JoinColumn(name = "cust_id", referencedColumnName = "cust_id")
     private Customer customer;
     @ManyToOne
-    @JoinColumn(name = "emp_id", nullable = false)
+    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
     private Employee employee;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
 
     public Order(){

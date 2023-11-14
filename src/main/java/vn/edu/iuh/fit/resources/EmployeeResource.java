@@ -17,7 +17,7 @@ public class EmployeeResource {
     @GET
     @Produces("application/json")
     @Path("/{id}")
-    public Response getEmp(@PathParam("id") long empId){
+    public Response findById(@PathParam("id") long empId){
         Optional<Employee> empOpt = employeeService.findById(empId);
         if(empOpt.isPresent()){
             return Response.ok(empOpt.get()).build();
@@ -28,20 +28,30 @@ public class EmployeeResource {
     @Produces("application/json")
     @Consumes("application/json")
     public Response getAll(){
-        List<Employee> employees = employeeService.getAllEmp();
+        List<Employee> employees = employeeService.getAll();
         return Response.ok(employees).build();
     }
     @POST
     @Produces("application/json")
     @Consumes("application/json")
     public Response insert(Employee employee){
-        employeeService.insertEmp(employee);
+        employeeService.insert(employee);
         return Response.ok(employee).build();
+    }
+    @PUT
+    @Consumes("application/json")
+    public Response update(Employee employee){
+        Optional<Boolean> update = employeeService.update(employee);
+        if(update.isEmpty())
+            return Response.status(Response.Status.NOT_FOUND).build();
+        if(update.get())
+            return Response.ok().build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") long id){
-        if(employeeService.deleteEmp(id))
+        if(employeeService.delete(id))
             return Response.ok().build();
         return Response.status(Response.Status.NOT_FOUND).build();
     }

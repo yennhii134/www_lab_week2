@@ -7,8 +7,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.iuh.fit.models.Customer;
-import vn.edu.iuh.fit.services.CustomerService;
+import vn.edu.iuh.fit.models.Employee;
 import vn.edu.iuh.fit.services.EmployeeService;
 
 
@@ -16,32 +15,20 @@ import vn.edu.iuh.fit.services.EmployeeService;
 public class HelloServlet extends HttpServlet {
     private EmployeeService employeeService = new EmployeeService();
 
-    private CustomerService customerService = new CustomerService();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
-        if(action.equals("customer")){
+        if(action.equals("employee")){
             viewCustomer(request,response);
         }
     }
 
     private void viewCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Customer> customers = customerService.getAllCustomer();
+        List<Employee> employees = employeeService.getAll();
 
-        request.setAttribute("customer", customers);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/customer.jsp");
+        request.setAttribute("employee", employees);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/employee.jsp");
         dispatcher.forward(request,response);
     }
 
-    private void viewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        String url ="";
-        try{
-            request.setAttribute("employee", employeeService.getAllEmp());
-            url="/employee.jsp";
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request,response);
-    }
 
 }

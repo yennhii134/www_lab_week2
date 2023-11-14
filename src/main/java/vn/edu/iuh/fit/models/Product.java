@@ -1,12 +1,16 @@
 package vn.edu.iuh.fit.models;
 
 import jakarta.persistence.*;
+import vn.edu.iuh.fit.converters.ProductStatusConverter;
 import vn.edu.iuh.fit.enums.ProductStatus;
 
 import java.util.List;
 
 @Entity
 @Table(name = "product")
+@NamedQueries(
+        @NamedQuery(name = "Product.getAll", query = "select p from Product p")
+)
 public class Product {
     @Id
     @Column(name = "product_id", nullable = false)

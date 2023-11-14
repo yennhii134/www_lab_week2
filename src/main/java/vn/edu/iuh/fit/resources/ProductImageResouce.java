@@ -2,22 +2,22 @@ package vn.edu.iuh.fit.resources;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import vn.edu.iuh.fit.models.Customer;
-import vn.edu.iuh.fit.services.CustomerService;
+import vn.edu.iuh.fit.models.ProductImage;
+import vn.edu.iuh.fit.services.ProductImageService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerResource {
-    private final CustomerService customerService;
-    public CustomerResource(){
-        customerService = new CustomerService();
+public class ProductImageResouce {
+    private final ProductImageService productImageService;
+    public ProductImageResouce(){
+        productImageService = new ProductImageService();
     }
     @GET
     @Produces("application/json")
     @Path("/{id}")
     public Response findById(@PathParam("id") long id){
-        Optional<Customer> optional = customerService.findById(id);
+        Optional<ProductImage> optional = productImageService.findById(id);
         if(optional.isPresent()){
             return Response.ok(optional.get()).build();
         }
@@ -27,20 +27,20 @@ public class CustomerResource {
     @Produces("application/json")
     @Consumes("application/json")
     public Response getAll(){
-        List<Customer> customers = customerService.getAll();
-        return Response.ok(customers).build();
+        List<ProductImage> productImages = productImageService.getAll();
+        return Response.ok(productImages).build();
     }
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response insert(Customer customer){
-        customerService.insert(customer);
-        return Response.ok(customer).build();
+    public Response insert(ProductImage productImage){
+        productImageService.insert(productImage);
+        return Response.ok(productImage).build();
     }
     @PUT
     @Consumes("application/json")
-    public Response update(Customer customer){
-        Optional<Boolean> update = customerService.update(customer);
+    public Response update(ProductImage productImage){
+        Optional<Boolean> update = productImageService.update(productImage);
         if(update.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
         if(update.get())

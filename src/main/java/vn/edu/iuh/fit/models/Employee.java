@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 @NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e"))
+        @NamedQuery(name = "Employee.getAll", query = "select e from Employee e where e.employeeStatus=:status"))
 public class Employee {
     @Id
     @Column(name = "emp_id", nullable = false, length = 20)
@@ -29,7 +29,7 @@ public class Employee {
     private String address;
     @Column(name = "status", nullable = false)
     private EmployeeStatus employeeStatus;
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
     private List<Order> order;
 
     public Employee(){

@@ -12,13 +12,21 @@ public class EmployeeService {
     public EmployeeService(){
         employeeRepository = new EmployeeRepository();
     }
-    public void insertEmp(Employee employee){
-        employeeRepository.insertEmp(employee);
+    public boolean insert(Employee employee){
+       return employeeRepository.add(employee);
+    }
+    public Optional<Boolean> update(Employee employee){
+        Optional<Employee> optional = findById(employee.getId());
+
+        if (optional.isEmpty())
+            return Optional.empty();
+
+        return Optional.of(employeeRepository.update(employee));
     }
     public Optional<Employee> findById(long id){
         return employeeRepository.findById(id);
     }
-    public boolean deleteEmp(long id){
+    public boolean delete(long id){
         Optional<Employee> optional = findById(id);
         if(optional.isPresent()){
             Employee employee = optional.get();
@@ -36,8 +44,8 @@ public class EmployeeService {
         }
         return false;
     }
-    public List<Employee> getAllEmp(){
-        return employeeRepository.getAllEmp();
+    public List<Employee> getAll(){
+        return employeeRepository.getAll();
     }
 
 }

@@ -7,11 +7,11 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>vn.edu.iuh.fit.models.Customer</class>
         <class>vn.edu.iuh.fit.models.Employee</class>
+        <class>vn.edu.iuh.fit.models.Order</class>
         <class>vn.edu.iuh.fit.models.Product</class>
         <class>vn.edu.iuh.fit.models.ProductImage</class>
         <class>vn.edu.iuh.fit.models.ProductPrice</class>
         <class>vn.edu.iuh.fit.models.OrderDetail</class>
-        <class>vn.edu.iuh.fit.models.Order</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.driver"

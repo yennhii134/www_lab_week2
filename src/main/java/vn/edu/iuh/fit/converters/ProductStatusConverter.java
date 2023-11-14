@@ -19,7 +19,7 @@ public class ProductStatusConverter implements AttributeConverter<ProductStatus,
 
     @Override
     public ProductStatus convertToEntityAttribute(Integer dbData) {
-        if(dbData == null){
+        if (dbData == null) {
             return null;
         }
         return Stream.of(ProductStatus.values())

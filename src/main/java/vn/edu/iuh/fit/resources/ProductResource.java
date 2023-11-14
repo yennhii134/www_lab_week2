@@ -2,22 +2,22 @@ package vn.edu.iuh.fit.resources;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import vn.edu.iuh.fit.models.Customer;
-import vn.edu.iuh.fit.services.CustomerService;
+import vn.edu.iuh.fit.models.Product;
+import vn.edu.iuh.fit.services.ProductService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerResource {
-    private final CustomerService customerService;
-    public CustomerResource(){
-        customerService = new CustomerService();
+public class ProductResource {
+    private final ProductService productService;
+    public ProductResource(){
+        productService = new ProductService();
     }
     @GET
     @Produces("application/json")
     @Path("/{id}")
     public Response findById(@PathParam("id") long id){
-        Optional<Customer> optional = customerService.findById(id);
+        Optional<Product> optional = productService.findById(id);
         if(optional.isPresent()){
             return Response.ok(optional.get()).build();
         }
@@ -27,20 +27,20 @@ public class CustomerResource {
     @Produces("application/json")
     @Consumes("application/json")
     public Response getAll(){
-        List<Customer> customers = customerService.getAll();
-        return Response.ok(customers).build();
+        List<Product> products = productService.getAll();
+        return Response.ok(products).build();
     }
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response insert(Customer customer){
-        customerService.insert(customer);
-        return Response.ok(customer).build();
+    public Response insert(Product product){
+        productService.insert(product);
+        return Response.ok(product).build();
     }
     @PUT
     @Consumes("application/json")
-    public Response update(Customer customer){
-        Optional<Boolean> update = customerService.update(customer);
+    public Response update(Product product){
+        Optional<Boolean> update = productService.update(product);
         if(update.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
         if(update.get())

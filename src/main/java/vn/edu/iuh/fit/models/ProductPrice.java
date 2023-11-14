@@ -7,10 +7,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product_price")
+@NamedQueries({
+        @NamedQuery(name = "ProductPrice.getAll", query = "select pr from ProductPrice pr"),
+        @NamedQuery(name = "ProductPrice.findById", query = "select pr from ProductPrice pr where pr.product.id=:productId and pr.priceDateTime=:priceDateTime")
+})
 public class ProductPrice {
     @Id
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
     @Id
     @JoinColumn(name = "price_date_time")

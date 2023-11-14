@@ -4,15 +4,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "order_detail")
+@NamedQueries({
+        @NamedQuery(name = "OrderDetail.getAll", query = "select od from OrderDetail od"),
+        @NamedQuery(name = "OrderDetail.findById", query = "select od from OrderDetail od where od.product.id = :productId and od.order.id= :orderId")
+})
 public class OrderDetail {
     @Id
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private Order order;
     @Id
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
+
     @Column(name = "note", length = 255)
     private String note;
     @Column(name = "price")
