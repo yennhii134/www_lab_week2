@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.models;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.enums.EmployeeStatus;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 @NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e.id, e.fullName, e.dob, e.email, e.phone, e.address from Employee e"))
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e"))
 public class Employee {
     @Id
     @Column(name = "emp_id", nullable = false, length = 20)
@@ -18,6 +19,7 @@ public class Employee {
     @Column(name = "full_name",length = 150,nullable = false)
     private String fullName;
     @Column(name = "dob",nullable = false)
+    @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDateTime dob;
     @Column(name = "email",length = 150,nullable = false)
     private String email;

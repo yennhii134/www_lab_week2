@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.models;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "order_date")
+    @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDateTime orderDate;
     @ManyToOne
     @JoinColumn(name = "cust_id", nullable = false)

@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.models;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public class ProductPrice {
     private Product product;
     @Id
     @JoinColumn(name = "price_date_time")
+    @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDateTime priceDateTime;
     @Column(name = "note", length = 255)
     private String note;
