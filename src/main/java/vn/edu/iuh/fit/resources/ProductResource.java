@@ -8,6 +8,7 @@ import vn.edu.iuh.fit.services.ProductService;
 import java.util.List;
 import java.util.Optional;
 
+@Path(("/products"))
 public class ProductResource {
     private final ProductService productService;
     public ProductResource(){

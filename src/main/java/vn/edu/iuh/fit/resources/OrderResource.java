@@ -8,6 +8,7 @@ import vn.edu.iuh.fit.services.OrderService;
 import java.util.List;
 import java.util.Optional;
 
+@Path("/orders")
 public class OrderResource {
     private final OrderService orderService;
     public OrderResource(){

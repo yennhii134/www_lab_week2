@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Path("/product-prices")
 public class ProductPriceResource {
     private final ProductPriceService productPriceService;
     public ProductPriceResource(){
@@ -47,5 +48,12 @@ public class ProductPriceResource {
         if(update.get())
             return Response.ok().build();
         return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+    @GET
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response getPriceLastest(){
+        List<ProductPrice> productPrices = productPriceService.getPriceLastest();
+        return Response.ok(productPrices).build();
     }
 }

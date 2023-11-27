@@ -28,4 +28,7 @@ public class ProductPriceRepository extends CRUDRepository<ProductPrice> {
         }
         return Optional.empty();
     }
+    public List<ProductPrice> getPriceLastest(){
+        return em.createNamedQuery("ProductPrice.getPriceLatest", ProductPrice.class).getResultList();
+    }
 }

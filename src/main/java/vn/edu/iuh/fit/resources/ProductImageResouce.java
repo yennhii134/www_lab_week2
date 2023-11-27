@@ -8,6 +8,7 @@ import vn.edu.iuh.fit.services.ProductImageService;
 import java.util.List;
 import java.util.Optional;
 
+@Path("/product-images")
 public class ProductImageResouce {
     private final ProductImageService productImageService;
     public ProductImageResouce(){

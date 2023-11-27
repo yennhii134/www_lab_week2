@@ -23,5 +23,4 @@ public class ProductRepository extends CRUDRepository<Product> {
         }
         return Optional.empty();
     }
-
 }

@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
 @Table(name = "product_price")
 @NamedQueries({
         @NamedQuery(name = "ProductPrice.getAll", query = "select pr from ProductPrice pr"),
-        @NamedQuery(name = "ProductPrice.findById", query = "select pr from ProductPrice pr where pr.product.id=:productId and pr.priceDateTime=:priceDateTime")
+        @NamedQuery(name = "ProductPrice.findById", query = "select pr from ProductPrice pr where pr.product.id=:productId and pr.priceDateTime=:priceDateTime"),
+        @NamedQuery(
+                name = "ProductPrice.getPriceLatest",
+                query = "select pp from ProductPrice pp where pp.priceDateTime = (select max(pp2.priceDateTime) from ProductPrice pp2 where pp2.product.id = pp.product.id)"
+        )
 })
 public class ProductPrice {
     @Id

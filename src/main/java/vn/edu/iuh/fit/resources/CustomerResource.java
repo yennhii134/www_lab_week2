@@ -8,6 +8,7 @@ import vn.edu.iuh.fit.services.CustomerService;
 import java.util.List;
 import java.util.Optional;
 
+@Path("/customers")
 public class CustomerResource {
     private final CustomerService customerService;
     public CustomerResource(){

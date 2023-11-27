@@ -32,4 +32,7 @@ public class ProductPriceService {
     public boolean insert(ProductPrice productPrice){
         return productPriceRepository.add(productPrice);
     }
+    public List<ProductPrice> getPriceLastest(){
+        return productPriceRepository.getPriceLastest();
+    }
 }

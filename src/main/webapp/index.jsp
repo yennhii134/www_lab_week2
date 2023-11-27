@@ -3,12 +3,12 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="./js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="/week02?action=employee">Employee</a>
+<jsp:include page="components/header.jsp" />
+<%--<a href="/week02?action=employee">Employee</a>--%>
 
 <br>
 </body>
